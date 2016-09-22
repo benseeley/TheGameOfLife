@@ -21,7 +21,7 @@ GameOfLife::~GameOfLife()
 
 }
 
-CellGrid* GameOfLife::loadMapFile(const char* filePath)
+CellGrid GameOfLife::loadMapFile(const char* filePath)
 {
     std::ifstream mapFile (filePath);
     if(mapFile.is_open())
@@ -31,11 +31,10 @@ CellGrid* GameOfLife::loadMapFile(const char* filePath)
         int width;
         getline(mapFile, line);
         height = std::stoi(line);
-        //cout << height << endl;
         getline(mapFile, line);
         width = std::stoi(line);
 
-        CellGrid* grid = new CellGrid(height, width);
+        CellGrid grid(height, width);
 
 
         for(int i = 0; i < height; ++i)
@@ -43,7 +42,7 @@ CellGrid* GameOfLife::loadMapFile(const char* filePath)
             getline(mapFile, line);
             for(int j = 0; j < width; ++j)
             {
-                grid->setCell(i, j, line[j]);
+                grid.setCell(i, j, line[j]);
             }
         }
         return grid;
@@ -58,29 +57,24 @@ CellGrid* GameOfLife::loadMapFile(const char* filePath)
 int GameOfLife::run()
 {
 
-   // CellGrid *mapGrid = loadMapFile("map.txt");
+    //CellGrid mapGrid = loadMapFile("map.txt");
     CellGrid *mapGrid = new CellGrid(5,5,true,0.5);
 
-    CellSimulation *simulation = new CellSimulation(*mapGrid, 0);
-
-    cout<< "test1" << endl;
-    cout << simulation->currentGeneration->toString() << endl;
-    cout << "neighbors " << simulation->currentGeneration->getCell(0,1) << endl;
-    cout << "neighbors " << simulation->currentGeneration->getMooresNeighborhood(0,1) << endl;
+    CellSimulation simulation(*mapGrid, 0);
 
 
 
     do
     {
-        simulation->nextGeneration();
-        cout << simulation->currentGeneration->toString() << endl;
-        cout << endl;
+        cout << simulation.currentGeneration->toString() << endl;
 
-    }while (!simulation->isComplete());
+        simulation.nextGeneration();
+        sleep(1);
 
-    cout << "test6" << endl;
+    }while (!simulation.isComplete());
 
-    delete simulation;
     return 0;
 }
+
+
 

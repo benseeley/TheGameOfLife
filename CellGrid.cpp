@@ -166,6 +166,3 @@ void CellGrid::setMatrix(char c)
         }
     }
 }
-
-
-

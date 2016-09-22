@@ -19,3 +19,8 @@ void MapFileReader::openMapFile(std::string filePath)
     mapFile.open(filePath);
 
 }
+
+MapFileReader::~MapFileReader()
+{
+
+}

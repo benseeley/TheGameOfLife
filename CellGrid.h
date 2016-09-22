@@ -7,6 +7,7 @@
 
 
 #include <string>
+using namespace std;
 
 class CellGrid
 {
@@ -18,7 +19,7 @@ public:
 
 
     //getters
-    char getCell(int row, int column);
+    virtual char getCell(int row, int column);
     int getHeight() const;
     int getWidth() const;
 
@@ -30,16 +31,20 @@ public:
 
     //helper methods
     int getMooresNeighborhood(int row, int column);
-    std::string toString();
+    string toString();
     void randomize(double density);
 
 
 
-private:
+protected:
     int height;
     int width;
     char*  gridMatrix;//simulated 2d array
 };
+
+
+
+
 
 
 #endif //BENJAMINSEELEY_ASSIGNMENT2_CELLGRID_H

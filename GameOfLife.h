@@ -15,10 +15,11 @@ class GameOfLife
 public:
     GameOfLife();
     ~GameOfLife();
-    CellGrid* loadMapFile(const char* filePath);
+    CellGrid loadMapFile(const char* filePath);
     int run();
 
-    CellSimulation *simulation;
+    //member variables
+
 
 
 

@@ -3,14 +3,36 @@
 //
 
 #include "CellSimulation.h"
+#include "CellGrid.h"
+#include "TorusCellGrid.h"
+#include "MirroredCellGrid.h"
 #include <iostream>
 
 using namespace std;
 
 CellSimulation::CellSimulation(CellGrid &startingGrid, int mode)
 {
-    gridA = new CellGrid(startingGrid);
-    gridB = new CellGrid(startingGrid);
+    switch(mode)
+    {
+        case 0:
+            gridA = new CellGrid(startingGrid);
+            gridB = new CellGrid(startingGrid);
+            break;
+        case 1:
+            gridA = new TorusCellGrid(startingGrid);
+            gridB = new TorusCellGrid(startingGrid);
+            break;
+        case 2:
+            gridA = new MirroredCellGrid(startingGrid);
+            gridB = new MirroredCellGrid(startingGrid);
+            break;
+        default:
+            gridA = new CellGrid(startingGrid);
+            gridB = new CellGrid(startingGrid);
+            break;
+
+    }
+
     boundaryMode = mode;
     currentGeneration = gridA;
     previousGeneration = gridB;

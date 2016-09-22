@@ -8,16 +8,19 @@
 #include <string>
 #include "CellGrid.h"
 #include <fstream>
-
+using namespace std;
 
 class MapFileReader
 {
 public:
     MapFileReader();
-    MapFileReader(std::string filePath);
-    void openMapFile(std::string filePath);
+    MapFileReader(string filePath);
+    ~MapFileReader();
+    void openMapFile(string filePath);
 private:
-    std::ifstream mapFile;
+    ifstream mapFile;
+
+
 };
 
 
